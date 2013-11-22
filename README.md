@@ -61,8 +61,8 @@ $ git filter-branch --force --index-filter \
   --prune-empty --tag-name-filter cat -- --all
  ```
 
-NOTE: “`git rm --cached filename`” only removes a file from the repo history
-	  where “`git rm filename`” will remove and delete it
+NOTE: `git rm --cached filename` only removes a file from the repo history
+	  where `git rm filename` will remove and delete it
 
 then add that file to your .gitignore so that you never accidentally commit it again
 ```
@@ -81,7 +81,7 @@ A pull request is often made on a repository when a contributor has forked it, m
 **Fork & Pull Model** lets anyone fork an existing repository and push changes to their personal fork without requiring access be granted to the source repository. The changes must then be pulled into the source repository by the project maintainer. This model reduces the amount of friction for new contributors and is popular with open source projects because it allows people to work independently without upfront coordination.<br />
 **Shared Repository Model** is more prevalent with small teams and organizations collaborating on private projects. Everyone is granted push access to a single shared repository and topic branches are used to isolate changes.
 Pull requests are especially useful in the Fork & Pull Model because they provide a way to notify project maintainers about changes in your fork. However, they're also useful in the Shared Repository Model where they're used to initiate code review and general discussion about a set of changes before being merged into a mainline branch.
-(github)
+(github)x
 
 
 You can handle pull requests from either the web interface or the command line.
@@ -97,6 +97,9 @@ http://github.com/user/repo-name/pull/pull-id.patch
 This also works with regular commits:
 http://github.com/user/repo-name/commit/commit-id.patch
 
-
+#####2 ways to do this
+1. create a new branch, pull down contributor's code, merge back into master
+<br />or
+2. `git am` The git am command allows you apply a diff to your working directory.
 
 
