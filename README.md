@@ -136,11 +136,7 @@ or for a specific tag: `git tag -l 'v1.1.*'`
  1. Annotated	`git tag -a v.1.0 -m 'version 1; SHIP IT'`
  2. Signed		`git tag -s v1.1 -m 'signed version: BUG FIXES'`
  3. Lightweight	`git tag v1.2-lw` **do not use** `-a`, `-m`, or `-s`
-
-
------------
-###SUB-MODULES
-So simple! `git submodule add ...` will automatically create a file: `.gitmodules`
+`
 
 Many ways to do this:
  1. from remote repo `git submodule add git://github.com/user/repo.git dir-name`
@@ -158,3 +154,11 @@ Many ways to do this:
       path = path/to/module/
       url = git://github.com/user/name.git
  ```
+
+#####Removing submodules
+Must remove submodules manually from `.gitmodules`
+
+#####Updating submodules
+ 1. `git submodule init`
+ 2. `git submodule update` 
+ 3. `git checkout master`
