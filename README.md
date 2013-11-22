@@ -70,6 +70,24 @@ $ echo “path/to/filename” >> .gitignore
 ```
 
 -----------
+###PURGING
+The most useful tool when purging data from a repository is: `git filter-branch`
+<br />options:
+- `--prune-empty` removes commits that become empty (i.e., do not change the tree) as a result of the filter operation. In the typical case, this option produces a cleaner history.
+- `-d` names a temporary directory that does not yet exist to use for building the filtered history.
+- `--index-filter` is the main event and runs against the index at each step in the history. You want to remove oops.iso wherever it is found, but is isn’t present in all commits. The command git `rm --cached -f --ignore-unmatch filename` deletes the file when it is present and does not fail otherwise.
+- `--tag-name-filter` describes how to rewrite tag names. A filter of cat is the identity operation. Your repository, like the sample above, may not have any tags, but I included this option for full generality.
+- `--` specifies the end of options to git filter-branch
+- `--all` following `--` is shorthand for all refs. Your repository, like the sample above, may have only one ref (master), but we included this option for full generality.
+
+Although it is possible to use the interactive rebase tool for this as well. To completely remove a commit from history we simply delete it in the interactive rebase. Any files and modifications added there will be lost, mods get absorbed into the next change.
+
+You will want to change the previous commit to edit which will drop you to that change when you exit rebase.<br />
+Here we want to remove are files from the repo with `git rm --cached filename`<br />
+and then amend the commit with `git commit --amend -C HEAD`.<br />
+finally continue completes the rebase `git rebase --continue`
+
+-----------
 ###STASHING
 
 
@@ -97,9 +115,25 @@ http://github.com/user/repo-name/pull/pull-id.patch
 This also works with regular commits:
 http://github.com/user/repo-name/commit/commit-id.patch
 
-#####2 ways to do this
+#####Many ways to do this
 1. create a new branch, pull down contributor's code, merge back into master
 <br />or
-2. `git am` The git am command allows you apply a diff to your working directory.
+2. `git am` The git am command allows yo to apply a diff to your working directory.
+```
+curl http://github.com/other-user-name/forked-repo/pull/1.patch | git am
+```
+3. curl the patch into a temp directory and then use git apply
 
+
+-----------
+###TAGGING
+Git has the ability to tag specific points in history as being important. Generally, people use this functionality to mark release points (v1.0, and so on).
+
+To list tags: `git tag`<br />
+or for a specific tag: `git tag -l 'v1.1.*'` 
+
+3 types:
+1. Annotated	`git tag -a v.1.0 -m 'version 1; SHIP IT'`
+2. Signed		``
+3. Lightweight
 
