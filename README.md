@@ -133,7 +133,28 @@ To list tags: `git tag`<br />
 or for a specific tag: `git tag -l 'v1.1.*'` 
 
 3 types:
-1. Annotated	`git tag -a v.1.0 -m 'version 1; SHIP IT'`
-2. Signed		``
-3. Lightweight
+ 1. Annotated	`git tag -a v.1.0 -m 'version 1; SHIP IT'`
+ 2. Signed		`git tag -s v1.1 -m 'signed version: BUG FIXES'`
+ 3. Lightweight	`git tag v1.2-lw` **do not use** `-a`, `-m`, or `-s`
 
+
+-----------
+###SUB-MODULES
+So simple! `git submodule add ...` will automatically create a file: `.gitmodules`
+
+Many ways to do this:
+ 1. from remote repo `git submodule add git://github.com/user/repo.git dir-name`
+	clones and adds submodule to dir name specified
+	`cat .gitmodules`
+	If you have multiple submodules, you’ll have multiple entries in this file.
+
+ 2. clone the repository into your repositories directory
+ 	add/modify the `.gitmodules` file yourself
+ 	 1. `git submodule init`
+ 	 2. `git submodule update` 
+
+ ```
+ [submodule "name"]
+      path = path/to/module/
+      url = git://github.com/user/name.git
+ ```
