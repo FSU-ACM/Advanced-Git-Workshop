@@ -1,39 +1,39 @@
 Advanced-Git-Workshop
 =====================
 
-###GLOBAL CONFIGURATIONS
+### GLOBAL CONFIGURATIONS
 
-####set global gitignore
+#### set global gitignore
 ```
 $ vim ~/.gitignore_global
 $ git config --global core.excludesfile '~/.gitignore_global'
 ```
 
-####set global configurations
+#### set global configurations
 ```
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 ```
 
-####set editor and diff tool
+#### set editor and diff tool
 ```
 $ git config --global core.editor emacs/vim/nano/etc
 $ git config --global merge.tool vimdiff
 ```
 
-####custom commands
+#### custom commands
 ```
 $ git config --global alias.today '!git log --since=midnight --author="$(git config user.name)" --oneline'
 ```
 
-####check settings
+#### check settings
 ```
 $ git config --list
 ```
 
 
 -----------
-###ADVANCED LISTING
+### ADVANCED LISTING
 advanced logging
 
 	⁃ alias.le=log --oneline --decorate
@@ -48,8 +48,8 @@ advanced logging
 
 
 -----------
-###REBASING AND ROLLING BACK
-####Removing sensitive information(purging a file)
+### REBASING AND ROLLING BACK
+#### Removing sensitive information(purging a file)
 **Once any sensitive information has been committed you should consider it compromised and change it immediately.**
 
 Once it is changed you want to remove the file from your repo entirely!
@@ -70,7 +70,7 @@ $ echo “path/to/filename” >> .gitignore
 ```
 
 -----------
-###PURGING
+### PURGING
 The most useful tool when purging data from a repository is: `git filter-branch`
 <br />options:
 - `--prune-empty` removes commits that become empty (i.e., do not change the tree) as a result of the filter operation. In the typical case, this option produces a cleaner history.
@@ -88,14 +88,14 @@ and then amend the commit with `git commit --amend -C HEAD`.<br />
 finally continue completes the rebase `git rebase --continue`
 
 -----------
-###STASHING
+### STASHING
 
 
 -----------
-###PULL REQUESTS
+### PULL REQUESTS
 A pull request is often made on a repository when a contributor has forked it, made some modifications and is now ready to hove those changes reviewed and merged back in to the original repo.
 
-#####Two common schools of thought:
+##### Two common schools of thought:
 **Fork & Pull Model** lets anyone fork an existing repository and push changes to their personal fork without requiring access be granted to the source repository. The changes must then be pulled into the source repository by the project maintainer. This model reduces the amount of friction for new contributors and is popular with open source projects because it allows people to work independently without upfront coordination.<br />
 **Shared Repository Model** is more prevalent with small teams and organizations collaborating on private projects. Everyone is granted push access to a single shared repository and topic branches are used to isolate changes.
 Pull requests are especially useful in the Fork & Pull Model because they provide a way to notify project maintainers about changes in your fork. However, they're also useful in the Shared Repository Model where they're used to initiate code review and general discussion about a set of changes before being merged into a mainline branch.
@@ -104,18 +104,18 @@ Pull requests are especially useful in the Fork & Pull Model because they provid
 
 You can handle pull requests from either the web interface or the command line.
 
-#####WEB INTERFACE
+##### WEB INTERFACE
 1. “Pull Requests”
 2. Follow the steps to apply the changes to a specific branch.
 
-#####COMMAND LINE
+##### COMMAND LINE
 Every pull request comes with a corresponding patch URL. You create this URL by adding “.patch” to the address.
 http://github.com/user/repo-name/pull/pull-id.patch
 
 This also works with regular commits:
 http://github.com/user/repo-name/commit/commit-id.patch
 
-#####Many ways to do this
+##### Many ways to do this
 1. create a new branch, pull down contributor's code, merge back into master
 <br />or
 2. `git am` The git am command allows yo to apply a diff to your working directory.
@@ -126,7 +126,7 @@ curl http://github.com/other-user-name/forked-repo/pull/1.patch | git am
 
 
 -----------
-###TAGGING
+### TAGGING
 Git has the ability to tag specific points in history as being important. Generally, people use this functionality to mark release points (v1.0, and so on).
 
 To list tags: `git tag`<br />
@@ -155,10 +155,10 @@ Many ways to do this:
       url = git://github.com/user/name.git
  ```
 
-#####Removing submodules
+##### Removing submodules
 Must remove submodules manually from `.gitmodules`
 
-#####Updating submodules
+##### Updating submodules
  1. `git submodule init`
  2. `git submodule update` 
  3. `git checkout master`
